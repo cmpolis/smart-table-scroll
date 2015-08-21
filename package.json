@@ -19,7 +19,7 @@
     "data"
   ],
   "author": "Chris Polis, @ChrisPolis",
-  "license": "All Rights Reserved.",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/cmpolis/smart-table-scroll/issues"
   },
