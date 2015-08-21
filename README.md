@@ -5,7 +5,8 @@ Created by [@ChrisPolis](http://twitter.com/chrispolis), originally as a compone
 
 For related projects, see: [Clusterize.js](https://github.com/NeXTs/Clusterize.js) and [fixed-data-table](https://github.com/facebook/fixed-data-table)
 
-## Demo
+## [Demo](http://www.bytemuse.com/tablescroll/)
+![demo](https://raw.githubusercontent.com/cmpolis/smart-table-scroll/master/1mm-demo.gif)
 
 ## Usage
 ```js
