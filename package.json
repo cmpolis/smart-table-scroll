@@ -1,0 +1,33 @@
+{
+  "name": "smart-table-scroll",
+  "version": "0.0.1",
+  "description": "Build scrollable tables w/ many(1MM) rows.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo 'Tests... WIP.'",
+    "serve": "./node_modules/serve/bin/serve -p 5050",
+    "build": "./node_modules/browserify/bin/cmd.js src/smart-table-scroll.js -o smart-table-scroll.js -s SmartTableScroll && echo 'Done building.'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cmpolis/smart-table-scroll"
+  },
+  "keywords": [
+    "table",
+    "scroll",
+    "browser",
+    "data"
+  ],
+  "author": "Chris Polis, @ChrisPolis",
+  "license": "All Rights Reserved.",
+  "bugs": {
+    "url": "https://github.com/cmpolis/smart-table-scroll/issues"
+  },
+  "homepage": "https://github.com/cmpolis/smart-table-scroll",
+  "dependencies": {
+    "browserify": "^11.0.1",
+    "lodash": "^3.10.1",
+    "lodash.sortedindex": "^3.1.1",
+    "serve": "^1.4.0"
+  }
+}

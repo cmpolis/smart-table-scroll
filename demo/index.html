@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang='en-US'>
+<head>
+  <meta charset='utf-8'>
+  <title>Smart Table Scroll</title>
+  <link href='http://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <style>
+    .test-row {
+      height: 20px;
+      position: absolute;
+    }
+    .test-col {
+      display: inline-block;
+      width: 40px;
+    }
+    .test-col.index {
+      font-weight: 700;
+    }
+    .scrollable-table {
+      overflow-y: scroll;
+      position: relative;
+    }
+    #table-target {
+      height: 360px;
+      width: 200px;
+      margin: 40px 80px;
+      padding: 0 20px;
+      background: #EEE;
+    }
+  </style>
+</head>
+
+<body>
+  <div id='table-target' class='scrollable-table'></div>
+  <script src="/node_modules/lodash/index.js"></script>
+  <script src="../../smart-table-scroll.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>

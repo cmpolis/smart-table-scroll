@@ -1,0 +1,11 @@
+#
+#
+#
+
+# npm stuff
+node_modules/
+npm-debug.log
+
+# VIM is awesome
+*.swo
+*.swp
