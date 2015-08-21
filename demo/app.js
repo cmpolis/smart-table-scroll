@@ -11,7 +11,7 @@ var table = window.table = new SmartTableScroll({
   data: _.range(1e6).map(function(ndx) {
     return {
       index: ndx,
-      color: _.sample(['red', 'blue', 'green', 'pink']),
+      color: _.sample(['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet']),
       random: Math.ceil(Math.random() * 100)
     };
   }),
@@ -28,6 +28,7 @@ var table = window.table = new SmartTableScroll({
       "<div class='test-col index'>"+rowData.index+"</div>"+
       "<div class='test-col color'>"+rowData.color+"</div>"+
       "<div class='test-col random'>"+rowData.random+"</div>";
+    node.childNodes[1].style.color = rowData.color;
     return node;
   },
 
@@ -35,6 +36,7 @@ var table = window.table = new SmartTableScroll({
   updateRow: function(rowData, rowEl) {
     rowEl.childNodes[0].textContent = rowData.index;
     rowEl.childNodes[1].textContent = rowData.color;
+    rowEl.childNodes[1].style.color = rowData.color;
     rowEl.childNodes[2].textContent = rowData.random;
   }
 });

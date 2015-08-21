@@ -7,32 +7,53 @@
   <link href='./style.css' rel='stylesheet' type='text/css'>
 
   <style>
+    body {
+      padding: 40px;
+    }
     .test-row {
       height: 20px;
       position: absolute;
     }
     .test-col {
       display: inline-block;
-      width: 40px;
+      padding: 5px 10px;
     }
     .test-col.index {
       font-weight: 700;
+    }
+    .index {
+      text-align: right;
+      width: 80px;
+    }
+    .color {
+      width: 120px; }
+    .random {
+      width: 120px;
+      text-align: center;
     }
     .scrollable-table {
       overflow-y: scroll;
       position: relative;
     }
+    #table-headers > div {
+      display: inline-block;
+      padding: 5px 10px;
+      font-weight: 700;
+    }
     #table-target {
       height: 360px;
-      width: 200px;
-      margin: 40px 80px;
-      padding: 0 20px;
+      width: 360px;
       background: #EEE;
     }
   </style>
 </head>
 
 <body>
+  <div id='table-headers'>
+    <div class='index'>Index #</div>
+    <div class='color'>Color</div>
+    <div class='random'>Random Int</div>
+  </div>
   <div id='table-target' class='scrollable-table'></div>
   <script src="/node_modules/lodash/index.js"></script>
   <script src="../../smart-table-scroll.js"></script>
