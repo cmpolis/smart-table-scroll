@@ -2,11 +2,11 @@
   "name": "smart-table-scroll",
   "version": "0.0.1",
   "description": "Build scrollable tables w/ many(1MM) rows.",
-  "main": "index.js",
+  "main": "smart-table-scroll.js",
   "scripts": {
     "test": "echo 'Tests... WIP.'",
     "serve": "./node_modules/serve/bin/serve -p 5050",
-    "build": "./node_modules/browserify/bin/cmd.js src/smart-table-scroll.js -o smart-table-scroll.js -s SmartTableScroll && echo 'Done building.'"
+    "build": "./node_modules/browserify/bin/cmd.js src/smart-table-scroll.js -o smart-table-scroll.js -s SmartTableScroll && ./node_modules/uglify-js/bin/uglifyjs smart-table-scroll.js -o smart-table-scroll.min.js && echo 'Done building.'"
   },
   "repository": {
     "type": "git",
