@@ -25,9 +25,11 @@
   },
   "homepage": "https://github.com/cmpolis/smart-table-scroll",
   "dependencies": {
+    "lodash.sortedindex": "^3.1.1"
+  },
+  "devDependencies": {
     "browserify": "^11.0.1",
-    "lodash": "^3.10.1",
-    "lodash.sortedindex": "^3.1.1",
-    "serve": "^1.4.0"
+    "serve": "^1.4.0",
+    "uglify-js": "^2.4.24"
   }
 }

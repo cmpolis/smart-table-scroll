@@ -5,6 +5,7 @@
 # npm stuff
 node_modules/
 npm-debug.log
+.npmrc
 
 # VIM is awesome
 *.swo
