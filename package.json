@@ -2,7 +2,7 @@
   "name": "smart-table-scroll",
   "version": "0.0.1",
   "description": "Build scrollable tables w/ many(1MM) rows.",
-  "main": "smart-table-scroll.js",
+  "main": "src/smart-table-scroll.js",
   "scripts": {
     "test": "echo 'Tests... WIP.'",
     "serve": "./node_modules/serve/bin/serve -p 5050",
