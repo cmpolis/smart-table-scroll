@@ -1,19 +1,46 @@
+/* Demo specific styling */
+
 * {
   box-sizing: border-box;
   margin: 0;
-  padding: 0; }
+  padding: 0;
+}
 
 body {
   font-family: 'Inconsolata', sans-serif;
   font-size: 13px;
   color: #333;
-  margin-top: 32px; }
+  margin-top: 32px;
+  padding: 40px;
+}
 
-ul {
-  list-style: none; }
-
-button {
-  border: 1px solid #333;
-  border-radius: 4px; }
-  button:hover {
-    background: #CCC; }
+.test-row {
+  height: 17px;
+}
+.test-col {
+  display: inline-block;
+  padding: 5px 10px;
+}
+.test-col.index {
+  font-weight: 700;
+}
+.index {
+  text-align: right;
+  width: 80px;
+}
+.color {
+  width: 120px; }
+.random {
+  width: 120px;
+  text-align: center;
+}
+#table-headers > div {
+  display: inline-block;
+  padding: 5px 10px;
+  font-weight: 700;
+}
+#table-target {
+  height: 360px;
+  width: 360px;
+  background: #EEE;
+}

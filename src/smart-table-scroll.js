@@ -44,6 +44,7 @@ var ScrollableTable = function(opts) {
   for(var key in opts) { this[key] = opts[key]; }
   this.rowsWithNodes = []; // indices of rows w/ active dom nodes
   this.tops = []; // css `top` values for each data row - in seperate array for faster _sortedIndex call
+  this.el.className = this.el.className + ' sts-container';
   this.reset();
 };
 
@@ -67,6 +68,7 @@ ScrollableTable.prototype.reset = function() {
   for(ndx = 0; ndx < nodesToBuild; ndx++) {
     var newRow = this.buildRow(this.data[ndx]);
     newRow.style.top = this.data[ndx].__top + 'px';
+    newRow.className = newRow.className + ' sts-row';
     this.el.appendChild(newRow);
     this.rowsWithNodes.push(ndx);
     this.data[ndx].__node = newRow;
@@ -74,8 +76,7 @@ ScrollableTable.prototype.reset = function() {
 
   // add node to stick to bottom to preserve height
   this.bottomEl = document.createElement('div');
-  this.bottomEl.innerText = '.';
-  this.bottomEl.style.position = 'absolute';
+  this.bottomEl.className = 'sts-bottom-anchor';
   this.bottomEl.style.top = this.totalHeight + 'px';
   this.el.appendChild(this.bottomEl);
 

@@ -17,7 +17,7 @@ var table = window.table = new SmartTableScroll({
   }),
 
   //
-  heightFn: function() { return 20; },
+  heightFn: function() { return 17; },
   availableNodes: 200,
 
   //
