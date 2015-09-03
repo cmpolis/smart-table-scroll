@@ -48,6 +48,23 @@ var table = new SmartTableScroll({
 // table. ...
 ```
 
+Include `smart-table-scroll.css` or add the following to your CSS:
+```css
+.sts-container {
+  overflow-y: scroll;
+  position: relative;
+  /* scroll container also needs a fixed/defined height */
+}
+.sts-container .sts-row {
+  position: absolute;
+}
+.sts-container .sts-bottom-anchor {
+  position: absolute;
+  height: 1px;
+  width: 1px;
+}
+```
+
 #### To build and test locally:
 ```
 $ npm install
