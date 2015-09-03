@@ -133,21 +133,22 @@ ScrollableTable.prototype.setHeights = function() {
 
 // Update data and adjust heights, rebuild nodes
 ScrollableTable.prototype.updateData = function(newData) {
-  var start = performance.now();
+  // var start = performance.now();
   var oldNodes = [], ndx;
-  for(ndx = 0; ndx < this.rowsWithNodes.length; ndx++) {
+  for(ndx = 0; ndx < Math.min(this.rowsWithNodes.length, newData.length); ndx++) {
     oldNodes.push(this.data[this.rowsWithNodes[ndx]].__node);
+    this.data[this.rowsWithNodes[ndx]].__node = null;
     this.rowsWithNodes[ndx] = ndx;
   }
   this.data = newData;
   this.setHeights();
   for(ndx = 0; ndx < oldNodes.length; ndx++) {
-    this.data[ndx].__node = oldNodes[ndx]
+    this.data[ndx].__node = oldNodes[ndx];
     this.updateRow(this.data[ndx], this.data[ndx].__node);
     this.data[ndx].__node.style.top = this.data[ndx].__top + 'px';
   }
   this.updateVisibleRows();
-  console.log((performance.now() - start) + ' ms (update)');
+  // console.log((performance.now() - start) + ' ms (update)');
 };
 
 //
