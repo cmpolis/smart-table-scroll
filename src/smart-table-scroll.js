@@ -100,7 +100,6 @@ ScrollableTable.prototype.updateVisibleRows = function(evt) {
       fillEnd = Math.min(this.data.length, midNdx + Math.ceil(this.availableNodes / 2));
   if(this.lastMidNdx === midNdx) { this.isUpdating = false; return; }
   this.lastMidNdx = midNdx;
-
   for(var rowNdx = fillStart; rowNdx < fillEnd; rowNdx++) {
     if(!this.data[rowNdx].__node) {
       while(this.rowsWithNodes[freeSearchNdx] > fillStart &&
@@ -130,6 +129,25 @@ ScrollableTable.prototype.setHeights = function() {
     this.totalHeight += this.heightFn(this.data[ndx]);
   }
   return this.totalHeight;
+};
+
+// Update data and adjust heights, rebuild nodes
+ScrollableTable.prototype.updateData = function(newData) {
+  var start = performance.now();
+  var oldNodes = [], ndx;
+  for(ndx = 0; ndx < this.rowsWithNodes.length; ndx++) {
+    oldNodes.push(this.data[this.rowsWithNodes[ndx]].__node);
+    this.rowsWithNodes[ndx] = ndx;
+  }
+  this.data = newData;
+  this.setHeights();
+  for(ndx = 0; ndx < oldNodes.length; ndx++) {
+    this.data[ndx].__node = oldNodes[ndx]
+    this.updateRow(this.data[ndx], this.data[ndx].__node);
+    this.data[ndx].__node.style.top = this.data[ndx].__top + 'px';
+  }
+  this.updateVisibleRows();
+  console.log((performance.now() - start) + ' ms (update)');
 };
 
 //
