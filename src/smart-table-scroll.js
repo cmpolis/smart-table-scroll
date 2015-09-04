@@ -134,6 +134,9 @@ ScrollableTable.prototype.setHeights = function() {
 // Update data and adjust heights, rebuild nodes
 ScrollableTable.prototype.updateData = function(newData) {
   // var start = performance.now();
+  if(this.isUpdating) { return; }
+  this.isUpdating = true;
+
   var oldNodes = [], ndx;
   for(ndx = 0; ndx < Math.min(this.rowsWithNodes.length, newData.length); ndx++) {
     oldNodes.push(this.data[this.rowsWithNodes[ndx]].__node);
@@ -147,6 +150,7 @@ ScrollableTable.prototype.updateData = function(newData) {
     this.updateRow(this.data[ndx], this.data[ndx].__node);
     this.data[ndx].__node.style.top = this.data[ndx].__top + 'px';
   }
+  this.isUpdating = false;
   this.updateVisibleRows();
   // console.log((performance.now() - start) + ' ms (update)');
 };
