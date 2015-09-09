@@ -2093,6 +2093,7 @@ ScrollableTable.prototype.updateData = function(newData) {
     this.updateRow(this.data[ndx], this.data[ndx].__node);
     this.data[ndx].__node.style.top = this.data[ndx].__top + 'px';
   }
+  this.bottomEl.style.top = this.totalHeight + 'px';
   this.isUpdating = false;
   this.updateVisibleRows();
   // console.log((performance.now() - start) + ' ms (update)');
