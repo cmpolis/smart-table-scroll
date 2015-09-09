@@ -42,6 +42,7 @@ var ScrollableTable = function(opts) {
   // inherit from options or defaults
   for(var key in defaults) { this[key] = defaults[key]; }
   for(var key in opts) { this[key] = opts[key]; }
+
   this.rowsWithNodes = []; // indices of rows w/ active dom nodes
   this.tops = []; // css `top` values for each data row - in seperate array for faster _sortedIndex call
   this.el.className = this.el.className + ' sts-container';
@@ -133,9 +134,24 @@ ScrollableTable.prototype.setHeights = function() {
 
 // Update data and adjust heights, rebuild nodes
 ScrollableTable.prototype.updateData = function(newData) {
+  var ndx;
   // var start = performance.now();
+
   if(this.isUpdating) { return; }
   this.isUpdating = true;
+
+  // first pass at updating datasets w/ different sizes
+  //  todo: make this smarter, eg this.unusedNodes w/ `< hidden >` nodes
+  // remove nodes if newData is smaller
+  // } else ...
+  if(newData.length < this.rowsWithNodes.length) {
+    for(ndx = this.rowsWithNodes.length-1; ndx >= newData.length; ndx--) {
+      var node = this.data[this.rowsWithNodes[ndx]].__node;
+      if(node.parentNode) { node.parentNode.removeChild(node); }
+      this.data[this.rowsWithNodes[ndx]].__node = null;
+      this.rowsWithNodes.pop();
+    }
+  }
 
   var oldNodes = [], ndx;
   for(ndx = 0; ndx < Math.min(this.rowsWithNodes.length, newData.length); ndx++) {
@@ -143,6 +159,17 @@ ScrollableTable.prototype.updateData = function(newData) {
     this.data[this.rowsWithNodes[ndx]].__node = null;
     this.rowsWithNodes[ndx] = ndx;
   }
+
+  // build new nodes...
+  // console.log('test....', newData.length, oldNodes.length, this.availableNodes);
+  if(oldNodes.length < newData.length &&
+     oldNodes.length < this.availableNodes) {
+    for(ndx = oldNodes.length; ndx < Math.min(this.availableNodes, newData.length); ndx++) {
+      oldNodes.push(this.buildRow(newData[ndx]));
+      this.rowsWithNodes.push(ndx);
+    }
+  }
+
   this.data = newData;
   this.setHeights();
   for(ndx = 0; ndx < oldNodes.length; ndx++) {
