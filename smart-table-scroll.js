@@ -2050,38 +2050,38 @@ ScrollableTable.prototype.setHeights = function() {
 
 // Update data and adjust heights, rebuild nodes
 ScrollableTable.prototype.updateData = function(newData) {
-  var ndx;
+  var oldNodes = [];
+  var ndx, newNode;
   // var start = performance.now();
 
   if(this.isUpdating) { return; }
   this.isUpdating = true;
 
-  // first pass at updating datasets w/ different sizes
-  //  todo: make this smarter, eg this.unusedNodes w/ `< hidden >` nodes
   // remove nodes if newData is smaller
-  // } else ...
+  // potential perf update; keep this.hiddenNodes and reuse/reattach instead of rebuilding
   if(newData.length < this.rowsWithNodes.length) {
     for(ndx = this.rowsWithNodes.length-1; ndx >= newData.length; ndx--) {
       var node = this.data[this.rowsWithNodes[ndx]].__node;
-      if(node.parentNode) { node.parentNode.removeChild(node); }
+      node.parentNode.removeChild(node);
       this.data[this.rowsWithNodes[ndx]].__node = null;
       this.rowsWithNodes.pop();
     }
   }
 
-  var oldNodes = [], ndx;
   for(ndx = 0; ndx < Math.min(this.rowsWithNodes.length, newData.length); ndx++) {
     oldNodes.push(this.data[this.rowsWithNodes[ndx]].__node);
     this.data[this.rowsWithNodes[ndx]].__node = null;
     this.rowsWithNodes[ndx] = ndx;
   }
 
-  // build new nodes...
-  // console.log('test....', newData.length, oldNodes.length, this.availableNodes);
+  // build new nodes if neccesary
   if(oldNodes.length < newData.length &&
      oldNodes.length < this.availableNodes) {
     for(ndx = oldNodes.length; ndx < Math.min(this.availableNodes, newData.length); ndx++) {
-      oldNodes.push(this.buildRow(newData[ndx]));
+      newNode = this.buildRow(newData[ndx]);
+      newNode.className = newNode.className + ' sts-row';
+      this.el.appendChild(newNode);
+      oldNodes.push(newNode);
       this.rowsWithNodes.push(ndx);
     }
   }
