@@ -45,7 +45,9 @@ var table = new SmartTableScroll({
   availableNodes: 200,
 });
 
-// table. ...
+// To update the table, pass in new data to `updateData`
+table.updateData([ { updatedRow1Data }, { updatedRow2Data } ... ]);
+
 ```
 
 Include `smart-table-scroll.css` or add the following to your CSS:
@@ -65,7 +67,10 @@ Include `smart-table-scroll.css` or add the following to your CSS:
 }
 ```
 
-#### To build and test locally:
+#### Known limitations
+*Firefox has an issue with `top` css property greater than `~18,000,000px`([more info](http://stackoverflow.com/questions/28260889/set-large-value-to-divs-height)); the 1,000,000 row demo works with Firefox, but larger tables may not.*
+
+#### To build and test locally
 ```
 $ npm install
 $ npm run build
