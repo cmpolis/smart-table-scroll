@@ -1,6 +1,6 @@
 {
   "name": "smart-table-scroll",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Build scrollable tables w/ many(1MM) rows.",
   "main": "src/smart-table-scroll.js",
   "scripts": {
