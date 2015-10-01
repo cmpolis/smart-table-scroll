@@ -46,6 +46,7 @@ var ScrollableTable = function(opts) {
   this.rowsWithNodes = []; // indices of rows w/ active dom nodes
   this.tops = []; // css `top` values for each data row - in seperate array for faster _sortedIndex call
   this.el.className = this.el.className + ' sts-container';
+  this.isUpdating = false;
   this.reset();
 };
 
@@ -154,8 +155,8 @@ ScrollableTable.prototype.updateData = function(newData) {
 
   for(ndx = 0; ndx < Math.min(this.rowsWithNodes.length, newData.length); ndx++) {
     oldNodes.push(this.data[this.rowsWithNodes[ndx]].__node);
-    this.data[this.rowsWithNodes[ndx]].__node = null;
-    this.rowsWithNodes[ndx] = ndx;
+    // this.data[this.rowsWithNodes[ndx]].__node = null;
+    // this.rowsWithNodes[ndx] = ndx;
   }
 
   // build new nodes if neccesary
@@ -173,13 +174,14 @@ ScrollableTable.prototype.updateData = function(newData) {
   this.data = newData;
   this.setHeights();
   for(ndx = 0; ndx < oldNodes.length; ndx++) {
-    this.data[ndx].__node = oldNodes[ndx];
-    this.updateRow(this.data[ndx], this.data[ndx].__node);
-    this.data[ndx].__node.style.top = this.data[ndx].__top + 'px';
+    //this.data[ndx].__node = oldNodes[ndx];
+    this.data[this.rowsWithNodes[ndx]].__node = oldNodes[ndx];
+    this.updateRow(this.data[this.rowsWithNodes[ndx]], this.data[this.rowsWithNodes[ndx]].__node);
+    this.data[this.rowsWithNodes[ndx]].__node.style.top = this.data[this.rowsWithNodes[ndx]].__top + 'px';
   }
   this.bottomEl.style.top = this.totalHeight + 'px';
   this.isUpdating = false;
-  this.updateVisibleRows();
+  // this.updateVisibleRows();
   // console.log((performance.now() - start) + ' ms (update)');
 };
 
